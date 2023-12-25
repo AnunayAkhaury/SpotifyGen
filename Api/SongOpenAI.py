@@ -3,7 +3,6 @@ from django.http import HttpResponse
 import os
 
 api_key_env = os.environ.get('OPENAI_API_KEY')
-print(api_key_env)
 
 def SongInput(input):
     client = OpenAI(
@@ -22,9 +21,3 @@ def SongInput(input):
     return(completion.choices[0].message)
     
     
-def test(response):
-    api_key_env = os.environ.get('OPENAI_API_KEY')
-    key = os.environ.get('key')
-    print(api_key_env)
-    
-    return HttpResponse(f"Key: {key}")
