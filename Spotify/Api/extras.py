@@ -84,9 +84,6 @@ def spotify_requests_execution(session_id, endpoint, method, data):
     elif method == 'POST':
         response = post(full_url, headers=headers, data=json.dumps(data))
 
-
-
-        
     try:
         if response:
             print('Response Status Code:', response.status_code)

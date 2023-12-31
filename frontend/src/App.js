@@ -1,25 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
 
 function App() {
   const [generatedPlaylist, setGeneratedPlaylist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
-  // Function to parse query parameters
   const getQueryParams = () => {
     const queryParams = new URLSearchParams(window.location.search);
-    return queryParams.get('message');
+    return queryParams.get("message");
   };
 
-  // Fetch playlist function
   const fetchPlaylist = () => {
     setIsLoading(true);
-    // Adjust the URL as needed
-    window.location.href = 'http://127.0.0.1:8000/spotify/check_auth';
+    window.location.href = "http://127.0.0.1:8000/spotify/check_auth";
   };
 
-  // Effect to check for messages in query parameters
   useEffect(() => {
     const msg = getQueryParams();
     if (msg) {
@@ -29,25 +24,46 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header bg-primary text-white p-4">
-        <h1>Spotify Playlist Generator</h1>
-      </header>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container">
+          <span className="navbar-brand mb-0 h1">
+            Spotify Playlist Generator
+          </span>
+        </div>
+      </nav>
+
       <div className="container mt-4">
         {message && <div className="alert alert-info">{message}</div>}
-        <button onClick={fetchPlaylist} className="btn btn-primary mb-3">
-          Generate Playlist
-        </button>
-        {isLoading && <p className="text-center">Generating Playlist...</p>}
+
+        <div className="d-flex justify-content-center mb-3">
+          <button onClick={fetchPlaylist} className="btn btn-success btn-lg">
+            Generate Playlist
+          </button>
+        </div>
+
+        {isLoading && (
+          <div className="text-center">
+            <div className="spinner-grow text-primary" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
+
         {generatedPlaylist.length > 0 && (
           <div>
             <h2 className="mb-3">Generated Playlist:</h2>
-            <ul className="list-group">
+            <div className="row">
               {generatedPlaylist.map((song, index) => (
-                <li key={index} className="list-group-item">
-                  {song}
-                </li>
+                <div key={index} className="col-md-4 mb-3">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">{song}</h5>
+                      {/* Additional song details can go here */}
+                    </div>
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
       </div>

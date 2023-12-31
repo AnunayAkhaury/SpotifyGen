@@ -124,8 +124,8 @@ class CreatePlaylist(APIView):
         endpoint = f"users/{user_id}/playlists"
         
         playlist_data = {
-        "name": "New Playlist",
-        "description": "New playlist description",
+        "name": "Custom Spotify Playlist",
+        "description": "Based of Current Playing Song",
         "public": False
         }
 
