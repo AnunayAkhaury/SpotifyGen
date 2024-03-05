@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
+import { FaSpotify } from "react-icons/fa";
+import "./App.css"; // Ensure App.css is correctly imported
 
 function App() {
   const [generatedPlaylist, setGeneratedPlaylist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  const fade = useSpring({ from: { opacity: 0 }, opacity: 1 });
+
+  const [btnAnimation, setBtnAnimation] = useSpring(() => ({
+    transform: "scale(1)",
+    from: { transform: "scale(1)" },
+  }));
 
   const getQueryParams = () => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -12,7 +22,10 @@ function App() {
 
   const fetchPlaylist = () => {
     setIsLoading(true);
+
+    setBtnAnimation({ transform: "scale(1.1)" });
     window.location.href = "http://127.0.0.1:8000/spotify/check_auth";
+    setTimeout(() => setBtnAnimation({ transform: "scale(1)" }), 150);
   };
 
   useEffect(() => {
@@ -23,51 +36,36 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container">
-          <span className="navbar-brand mb-0 h1">
-            Spotify Playlist Generator
-          </span>
+    <animated.div style={fade} className="App">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <FaSpotify className="logo" /> Spotify Playlist Generator
+          </a>
+          {}
         </div>
       </nav>
 
-      <div className="container mt-4">
+      <div className="container text-center mt-5">
         {message && <div className="alert alert-info">{message}</div>}
 
-        <div className="d-flex justify-content-center mb-3">
-          <button onClick={fetchPlaylist} className="btn btn-success btn-lg">
-            Generate Playlist
-          </button>
-        </div>
+        <animated.button
+          onClick={fetchPlaylist}
+          className="btn btn-success btn-lg generate-btn"
+          style={btnAnimation}
+        >
+          Generate Playlist
+        </animated.button>
 
         {isLoading && (
-          <div className="text-center">
-            <div className="spinner-grow text-primary" role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
+          <div className="spinner-border text-success" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         )}
 
-        {generatedPlaylist.length > 0 && (
-          <div>
-            <h2 className="mb-3">Generated Playlist:</h2>
-            <div className="row">
-              {generatedPlaylist.map((song, index) => (
-                <div key={index} className="col-md-4 mb-3">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5 className="card-title">{song}</h5>
-                      {/* Additional song details can go here */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        {}
       </div>
-    </div>
+    </animated.div>
   );
 }
 

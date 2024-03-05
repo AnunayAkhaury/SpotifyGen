@@ -1,38 +1,91 @@
+/* App.css */
+
+:root {
+  --spotify-green: #1db954;
+  --dark-bg: #121212;
+  --light-dark: #282828;
+  --card-bg: #181818;
+  --text-color: #ffffff;
+}
+
+body,
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--dark-bg);
+  color: var(--text-color);
   min-height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: var(--light-dark);
+  border-bottom: 1px solid var(--spotify-green);
+}
+
+.custom-btn,
+.generate-btn {
+  background: linear-gradient(45deg, var(--spotify-green), #1ed760);
+  border: none;
+  color: white;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.custom-btn:hover,
+.generate-btn:hover {
+  background: linear-gradient(45deg, #1ed760, var(--spotify-green));
+  transform: scale(1.05);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: none;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+}
+
+.card:hover img {
+  opacity: 0.8;
+}
+
+.spinner-border.text-success {
+  color: var(--spotify-green);
+}
+
+.alert-info {
+  background-color: var(--light-dark);
+  border-color: var(--spotify-green);
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
+}
+
+.spinner-border {
+  animation: spin 1s linear infinite;
 }

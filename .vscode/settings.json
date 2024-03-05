@@ -1,16 +1,16 @@
 {
-    "python.pythonPath": "C:\\Users\\Anuna\\Projects\\PlaylistGenProj\\web\\Scripts\\python.exe",
-    "window.zoomLevel": 6,
-    "python.languageServer": "Pylance",
-    "html.format.enable": true,
-    "html.format.endWithNewline": true,
-    "html.format.indentInnerHtml": true,
-    "editor.tabSize": 2,
-    "editor.wordWrap": "on",
-    "files.associations": {
-        "**/*.html": "html",
-        "**/templates/**/*.html": "django-html",
-        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
-    },
-    "emmet.includeLanguages": { "django-html": "html"}
+  "python.pythonPath": "C:\\Users\\Anuna\\Projects\\PlaylistGenProj\\web\\Scripts\\python.exe",
+  "window.zoomLevel": 0,
+  "python.languageServer": "Pylance",
+  "html.format.enable": true,
+  "html.format.endWithNewline": true,
+  "html.format.indentInnerHtml": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  },
+  "emmet.includeLanguages": { "django-html": "html" }
 }
